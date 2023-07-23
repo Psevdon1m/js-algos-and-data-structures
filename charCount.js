@@ -23,7 +23,7 @@ function charCount(str) {
   }
   return charMap;
 }
-// regex work slower than comparison so the alternalive way to check if char is alpha numeric is to check its code
+// regex work slower than comparison so the alternalive way to check if char is alpha numeric or not is to check its code
 function isAlphaNumberic(char) {
   const code = char.charCodeAt(0);
   if (
