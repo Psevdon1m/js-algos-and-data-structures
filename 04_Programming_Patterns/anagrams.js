@@ -1,3 +1,23 @@
+/**
+ * @title Anagram Validator
+ * @dev This function checks if two input strings are anagrams of each other.
+ *      An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+ *      typically using all the original letters exactly once.
+ *      For example, "listen" and "silent" are anagrams.
+ *
+ * @param {string} srt1 - The first input string.
+ * @param {string} str2 - The second input string.
+ * @return {boolean} Returns true if the input strings are anagrams, false otherwise.
+ *
+ * @notice The input strings must contain only alphabets (A-Z or a-z). Any non-alphabet character will be ignored.
+ * @notice The function is case-sensitive, so "Listen" and "silent" are not considered anagrams.
+ *
+ * @example
+ *   validAnagram("listen", "silent"); // Returns true
+ *   validAnagram("hello", "world");   // Returns false
+ *   validAnagram("Taco", "coat");     // Returns false (case-sensitive)
+ */
+
 // function validAnagram(srt1, str2) {
 //   if (srt1.length !== str2.length) {
 //     return false;
@@ -24,6 +44,21 @@
 // }
 
 //solution2
+/**
+ * @title Anagram Validator
+ * @dev Checks if two input strings are anagrams of each other.
+ * @notice An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+ *         typically using all the original letters exactly once.
+ * @param str1 The first input string.
+ * @param str2 The second input string.
+ * @return Returns `true` if the input strings are anagrams, otherwise returns `false`.
+ * @example
+ *   // returns true
+ *   validAnagram("listen", "silent");
+ *
+ *   // returns false
+ *   validAnagram("hello", "world");
+ */
 function validAnagram(str1, str2) {
   if (str1.length !== str2.length) {
     return false;

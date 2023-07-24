@@ -1,3 +1,13 @@
+/**
+ * @title Check if Two Arrays have Same Elements Squared
+ * @dev This function takes two arrays and checks if they contain the same elements squared, irrespective of their order.
+ * @param arr1 The first input array of integers.
+ * @param arr2 The second input array of integers.
+ * @return Whether the two arrays have the same elements squared.
+ * @notice The input arrays should only contain positive integers.
+ * @notice The function has a time complexity of O(n^2), where n is the length of the input arrays, due to the use of indexOf inside a loop.
+ */
+
 // function same(arr1, arr2) {
 //   // complexity in time O(n^2) as we have 2 loops
 //   if (arr1.length !== arr2.length) {
@@ -11,6 +21,22 @@
 //     arr2.splice(correctIndex, 1);
 //   }
 // }
+
+/**
+ * @title Check if Two Arrays have the Same Frequency of Squared Elements
+ * @notice This function determines whether two arrays have the same frequency of squared elements.
+ * @dev The function calculates the frequency of elements in each array, squares the elements of the first array,
+ *      and checks if the squared elements' frequencies in both arrays match.
+ * @param {number[]} arr1 - The first input array of integers.
+ * @param {number[]} arr2 - The second input array of integers.
+ * @return {boolean} Returns true if both arrays have the same frequency of squared elements, otherwise false.
+ * @example
+ *      let result = same([1, 2, 3], [4, 1, 9]);
+ *      console.log(result); // Output: true (Both arrays have the same frequency of squared elements)
+ *
+ *      let result2 = same([1, 2, 3], [1, 9]);
+ *      console.log(result2); // Output: false (The second array doesn't have the same frequency of squared elements)
+ */
 
 function same(arr1, arr2) {
   //has better time complexity O(n) as we dont have nested loops while we have a few loops instead
