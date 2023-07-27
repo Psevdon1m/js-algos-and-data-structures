@@ -6,7 +6,7 @@
  * @return The index of the `value` in the `array`, if found, otherwise -1.
  *
  * @notice This function assumes that the input `array` is sorted in ascending order.
- * @notice The `array` should be a non-empty array with unique elements for correct results.
+ * @notice The `array` should be a non-empty sorted array with unique elements for correct results.
  *
  * @example
  * // Returns 7
@@ -16,7 +16,7 @@
 function binarySearch(array, value) {
   let min = 0;
   let max = array.length - 1;
-  while (min <= max) {
+  while (min < max) {
     let middle = Math.floor((min + max) / 2);
     let cur = array[middle];
     if (cur < value) {
