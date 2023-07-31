@@ -39,7 +39,6 @@ function mergeSortedArrays(arr1, arr2) {
   return result;
 }
 
-/*======================================================================================================*/
 /**
  * Sorts an array using the merge sort algorithm.
  *
@@ -63,3 +62,50 @@ function mergeSort(arr) {
   let rightPart = mergeSort(arr.slice(middle)); // mergeSort(3,16,8,6) => left (...) = mergeSortedArrays([3],[16]) => [3,16]; right(...) = mergeSortedArrays([8],[6]) => [6,8]; mergeSortedArrays([3,16], [6,8]) => [3,6,8,16]
   return mergeSortedArrays(leftPart, rightPart); //[1,2,4,50], [3,6,8,16] => [1,2,3,4,6,8,16,50]
 }
+/* ======================================================================================================== */
+const swap = (arr, idx1, idx2) =>
+  ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
+
+/**
+ * Partitions the array around a pivot element and returns its final position.
+ * @param {Array} arr - The array to be sorted.
+ * @param {number} start - The starting index for the partition.
+ * @param {number} end - The ending index for the partition.
+ * @returns {number} - The final index of the pivot element after partitioning.
+ */
+function pivotHelper(arr, start = 0, end = arr.length - 1) {
+  let pivot = arr[start];
+  let resultPivotIndex = start;
+  for (let i = start + 1; i <= end; i++) {
+    if (pivot > arr[i]) {
+      resultPivotIndex++;
+      swap(arr, i, resultPivotIndex);
+    }
+  }
+  swap(arr, start, resultPivotIndex);
+
+  return resultPivotIndex;
+}
+// console.log(pivotHelper([5, 2, 1, 8, 4, 7, 6, 3]));
+/**
+ * Sorts an array using the quicksort algorithm.
+ * @param {Array} arr - The array to be sorted.
+ * @param {number} left - The starting index of the array to be sorted.
+ * @param {number} right - The ending index of the array to be sorted.
+ * @returns {Array} - The sorted array in ascending order.
+ * @example
+ * const unsortedArray = [100, -1, 5, 2, 1, 8, 4, 7, 6, 3];
+ * const sortedArray = quickSort(unsortedArray);
+ * console.log(sortedArray); // Output: [ -1, 1, 2, 3,   4,
+   5, 6, 7, 8, 100]
+ */
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    const pivot = pivotHelper(arr, left, right);
+    quickSort(arr, left, pivot - 1);
+    quickSort(arr, pivot + 1, right);
+  }
+
+  return arr;
+}
+console.log(quickSort([100, -1, 5, 2, 1, 8, 4, 7, 6, 3]));
