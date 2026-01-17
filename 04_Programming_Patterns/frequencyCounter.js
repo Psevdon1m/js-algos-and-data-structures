@@ -63,4 +63,25 @@ function same(arr1, arr2) {
   return true;
 }
 
-console.log(same([1, 2, 3], [1, 9, 4]));
+// console.log(same([1, 2, 3], [1, 9, 4]));
+
+function same2(arr1, arr2) {
+  let sqrObj = {};
+  let isSame = true;
+  if (arr1.length !== arr2.length) return false;
+  for (let n of arr1) {
+    sqrObj[n ** 2] = true;
+  }
+
+  for (let n of arr2) {
+    if (!sqrObj[n]) {
+      isSame = false;
+    }
+  }
+
+  return isSame;
+}
+
+console.log(same2([1, 2, 3], [1, 9, 4]));
+console.log(same2([1, 2, 3], [1, 9]));
+console.log(same2([1, 2, 3, 3, 3, 3, 2, 3, 5], [1, 9, 4, 9, 4, 9, 9, 9, 22]));

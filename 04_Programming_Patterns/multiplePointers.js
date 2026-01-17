@@ -88,3 +88,50 @@ function countUniqueValues(arr) {
   }
   return (i += 1);
 }
+
+function sumZero1(arr) {
+  let start = 0;
+  let end = arr.length - 1;
+
+  while (start < end) {
+    let sum = arr[start] + arr[end];
+    if (sum === 0) {
+      return [arr[end], arr[start]];
+    } else if (sum > 0) {
+      end--;
+    } else {
+      start++;
+    }
+  }
+  return;
+}
+
+// console.log(sumZero1([-3, -2, -1, 0, 1, 2, 3])); // Output: [3, -3]
+// console.log(sumZero1([-4, -3, -2, -1, 0, 1, 2, 5])); // Output: [2, -2]
+// console.log(sumZero1([-2, 0, 1, 3])); // Output: undefined
+// console.log(sumZero1([1, 2, 3])); // Output: undefined
+
+function countUniqueValues1(arr) {
+  if (!arr.length) return 0;
+  let i = 0;
+  let j = 1;
+  let unique = 1;
+
+  while (j < arr.length) {
+    let num1 = arr[i];
+    let num2 = arr[j];
+    if (num1 === num2) {
+      j++;
+    } else {
+      i = j;
+      j++;
+      unique++;
+    }
+  }
+  return unique;
+}
+
+console.log(countUniqueValues1([1, 1, 1, 1, 1, 2])); //2
+console.log(countUniqueValues1([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13])); // 7
+console.log(countUniqueValues1([]));
+console.log(countUniqueValues1([-2, -1, -1, 0, 1])); // 4

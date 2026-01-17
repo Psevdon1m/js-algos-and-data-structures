@@ -76,14 +76,50 @@ function validAnagram(str1, str2) {
   }
   return true;
 }
-console.log(`' ', ' ' ${validAnagram(" ", " ")}`);
-console.log(`'aaz', 'zza' ${validAnagram("aaz", "zza")}`);
-console.log(`'anagram', 'nagaram' ${validAnagram("anagram", "nagaram")}`);
-console.log(`'rat', 'car' ${validAnagram("rat", "car")}`);
-console.log(`'awesome', 'awesom' ${validAnagram("awesome", "awesom")}`);
-console.log(`'qwerty', 'qeywrt' ${validAnagram("qwerty", "qeywrt")}`);
+// console.log(`' ', ' ' ${validAnagram(" ", " ")}`);
+// console.log(`'aaz', 'zza' ${validAnagram("aaz", "zza")}`);
+// console.log(`'anagram', 'nagaram' ${validAnagram("anagram", "nagaram")}`);
+// console.log(`'rat', 'car' ${validAnagram("rat", "car")}`);
+// console.log(`'awesome', 'awesom' ${validAnagram("awesome", "awesom")}`);
+// console.log(`'qwerty', 'qeywrt' ${validAnagram("qwerty", "qeywrt")}`);
+// console.log(
+//   `'texttwisttime', 'timetwisttext' ${validAnagram(
+//     "texttwisttime",
+//     "timetwisttext"
+//   )}`
+// );
+
+function validAnagram1(str1, str2) {
+  if (str1.length !== str2.length) return false;
+  const lettersObj = {};
+
+  for (let char of str1) {
+    lettersObj[char] = (lettersObj[char] || 0) + 1;
+  }
+
+  let isValid = true;
+  for (let char of str2) {
+    let freq = lettersObj[char];
+
+    if (freq === 0 || freq === undefined) {
+      isValid = false;
+      break;
+    } else {
+      lettersObj[char] -= 1;
+    }
+  }
+
+  return isValid;
+}
+
+console.log(`' ', ' ' ${validAnagram1(" ", " ")}`);
+console.log(`'aaz', 'zza' ${validAnagram1("aaz", "zza")}`);
+console.log(`'anagram', 'nagaram' ${validAnagram1("anagram", "nagaram")}`);
+console.log(`'rat', 'car' ${validAnagram1("rat", "car")}`);
+console.log(`'awesome', 'awesom' ${validAnagram1("awesome", "awesom")}`);
+console.log(`'qwerty', 'qeywrt' ${validAnagram1("qwerty", "qeywrt")}`);
 console.log(
-  `'texttwisttime', 'timetwisttext' ${validAnagram(
+  `'texttwisttime', 'timetwisttext' ${validAnagram1(
     "texttwisttime",
     "timetwisttext"
   )}`

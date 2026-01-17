@@ -34,6 +34,34 @@ function countSubString(string, subString) {
   return counter;
 }
 
+function countSubString(string, subString) {
+  let matched = 0;
+  for (let i = 0; i < string.length; ) {
+    // loop over long str
+    for (let j = 0; j < subString.length; j++) {
+      //for each char loop over substring
+      let char = string[i];
+      let subChar = subString[j];
+      //chars selected
+
+      if (char === subChar) {
+        //chars are equal so we need to both increment j and i. J incremented in for loop declaration. I shoud be incremented here.
+        if (j === subString.length - 1) {
+          //also we need to check if we come to an end in inner loop, then we checked all chars and they are equal, so we need to inc the counter.
+          matched++;
+        }
+        //otherwise just increase i counter
+        i++;
+      } else {
+        //if charst not equal we need to break the inner loop and go to other car in string to start checking from the beginning.
+        i++;
+        break;
+      }
+    }
+  }
+  //return tootal matched count
+  return matched;
+}
 console.log("Result: ", countSubString("wowomgwomg", "omg"));
 console.log("Result: ", countSubString("lorie loled", "lol"));
 console.log("Result: ", countSubString("lorie loled", "lo"));

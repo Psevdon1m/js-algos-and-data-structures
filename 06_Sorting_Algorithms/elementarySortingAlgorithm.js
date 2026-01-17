@@ -44,7 +44,31 @@ function bubleSort(arr) {
   return arr;
 }
 
-// console.log(bubleSort([1, 5, 3, 7, 8, 2, 9]));
+function bubleSort(arr) {
+  //isNoSwaps help us optimize the algo by not looping over sorted array. We check if we did not swap in the last iteration, then array is sorted.
+  let isNoSwaps = false;
+  //start from end of the array as sorted values will be placed to end of the array eventually after several swaps.
+  for (let i = arr.length; i > 0; i--) {
+    console.log("checking: ", i);
+    //set no swaps to true, if this value does not change, then other loop will not be startedd
+    isNoSwaps = true;
+    //start loop from start of the array and copare two neighbors.
+    for (let j = 0; j < i - 1; j++) {
+      //if right neighbor is present and is smaller that left neighbour, swap them so biggest number is on the right.
+      if (arr[j + 1] && arr[j] > arr[j + 1]) {
+        //this allows us to know that swapping is pressent and we are not complete with sorting.
+        isNoSwaps = false;
+        swap(arr, j, j + 1);
+      }
+    }
+    // if we did not swap anything, then we are working with sorted array.
+    if (isNoSwaps) break;
+  }
+  return arr;
+}
+
+// console.log("BubbleSort: ", bubleSort([1, 5, 3, 7, 8, 2, 9, 4]));
+// console.log("BubbleSort: ", bubleSort([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 /*=======================================================================================================================*/
 
 /**
@@ -79,8 +103,30 @@ function selectionSort(arr) {
   return arr;
 }
 
+function selectionSort(arr) {
+  // have a loop that goes from arr start
+  for (let i = 0; i < arr.length; i++) {
+    // save cur_min_index to be first arr item
+    let cur_min_index = i;
+    // have a second loop to compare first item with other arr members
+    for (let j = i + 1; j < arr.length; j++) {
+      //if value at cur_min_index is bigger that some other array, update cur_min_index, as the idea to find the smallest value and put it to the begining.
+      if (arr[cur_min_index] > arr[j]) {
+        cur_min_index = j;
+      }
+      //if we finished going throug other arr members we swap the elemens to put smaller value at the begining of arr.
+      if (j === arr.length - 1 && i !== cur_min_index) {
+        //potential swap
+        swap(arr, i, cur_min_index);
+      }
+    }
+  }
+  // return sorted arr.
+  return arr;
+}
+
 // console.log(selectionSort([1, 3, 2, 5, 8, 7]));
-// console.log(selectionSort([5, 3, 4, 1, 2]));
+// console.log("SelectionSort: ", selectionSort([5, 3, 4, 1, 2]));
 // console.log(
 //   selectionSort([
 //     27, 15, 8, 30, 24, 11, 6, 16, 23, 7, 20, 18, 12, 28, 3, 9, 26, 19, 1, 21,
@@ -111,4 +157,20 @@ function insertionSort(arr) {
   return arr;
 }
 
+function insertionSort1(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let curVal = arr[i];
+    for (let j = i - 1; j >= 0 && arr[j] > curVal; j--) {
+      if (arr[j] && curVal > arr[j]) {
+        arr[j + 1] = curVal;
+      } else {
+        arr[j + 1] = arr[j];
+        arr[j] = curVal;
+      }
+    }
+  }
+  return arr;
+}
+
 console.log(insertionSort([3, 16, 9, 1, 2, 99, 37]));
+console.log(insertionSort1([3, 16, 9, 1, 2, 99, 37]));

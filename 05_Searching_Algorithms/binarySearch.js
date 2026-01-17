@@ -25,6 +25,26 @@ function binarySearch(arr, val) {
   }
   return arr[middle] === val ? middle : -1;
 }
+
+function binarySearch(arr, val) {
+  let start = 0;
+  let end = arr.length - 1;
+  let index = null;
+  let mid = Math.round((start + end) / 2);
+
+  while (arr[mid] !== val && start <= end) {
+    let midVal = arr[mid];
+    console.log({ start, midVal, end });
+
+    if (midVal > val) {
+      end = mid - 1;
+    } else {
+      start = mid + 1;
+    }
+    mid = Math.round((start + end) / 2);
+  }
+  return arr[mid] === val ? mid : -1;
+}
 console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8], 8)); // 7
 console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8], 1)); // 0
 console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8], 4)); // 3

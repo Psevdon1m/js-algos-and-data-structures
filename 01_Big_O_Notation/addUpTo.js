@@ -16,6 +16,17 @@
 /*=========================================================*/
 
 /**
+ * Formula based on:
+ * 1) addUpTo(n) = 1 +   2  + 3 + ... + n - 1 + n
+ * 2) +addUpTo(n) = n + (n-1)+ (n-2) ... + 2   + 1
+ * ------------------------------------------------
+ * we will get: n & 1 = n+1, n-1 + 2 = n+1, n-2+3 = n+1
+ *  2addUpTo(n) = (n + 1) + (n+1) + (n+1) ... (n + 1) + (n+1) we have multiple appearance of (n + 1)  which can be represented as "n"
+ * So we can simplify it to -> 2addUpTo(n) = n * (n+1)
+ * and addUpTo(n) = n * (n+1) / 2
+ */
+
+/**
  * @title Sum of Natural Numbers
  * @dev This function calculates the sum of natural numbers up to a given positive integer 'n'.
  * @notice The value of 'n' should be a non-negative integer.
