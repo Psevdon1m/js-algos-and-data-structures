@@ -34,3 +34,32 @@ Algo steps:
 # Intermediate Sorting Algos
 
 # Better sorting algos with better Big O complixity, usually O(n logn).
+
+# Merge Sort | Space Complex - O(N) | Time Complex (Best, avg, worst) - O(n log n) -> the best what sorting algs can do, exept for radix sort but it works with numbers only.
+
+Main ideas:
+
+- it's a combination of two thins - merging and sorting
+- it exploits the fact that arrays of 0 or 1 element are always sorted
+- works by decomposing an array into smaller arrays of 0 or 1 elements, then building up a newly sorted array
+
+Algo steps (helper fn for merging two sorted arrays):
+
+- In oorder to implement merge sort, it's useful to first implement a function responsible for merging two sorted arrays.
+- Given two arrays which are sorted, thhhis helper function should create a new array which iis alsoo sorted and consists of all of the elements in the two input arrays.
+- this function shoould run in O(n+m) time and O(n+m)space and should not moify the parameters pa ssed to it.
+
+Pseudo-code for merger:
+
+- create an empty array, take a look at the smallest values in each input array
+- While there are still values we haven't looked at...
+  ... - If the value in the first arr is smaller that the value in the second array, push the value iin the first array into ouot results and move on to the next value in the first array.
+  ... - if the alue in the first array is larger than the value in the second array, push the value in the second array into our results and move on to the next value iin the second array.
+  ... - Once we exhaust one array, push in all remaining values fromo the other array.
+
+Pseudo-code for mergeSort function.
+
+- Break up array into halves until yoou have arrays that are empty or have one element
+- create left part of array and make a recursive call to split left part into 1 el arrays, then merge them into sorted array.
+- create right part of array and make a recursive call to split right part into 1 el arrays, then merge them into sorted array.
+- finally merge left and right sorted arrays

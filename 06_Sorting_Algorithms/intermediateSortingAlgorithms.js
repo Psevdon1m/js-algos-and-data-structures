@@ -62,6 +62,41 @@ function mergeSort(arr) {
   let rightPart = mergeSort(arr.slice(middle)); // mergeSort(3,16,8,6) => left (...) = mergeSortedArrays([3],[16]) => [3,16]; right(...) = mergeSortedArrays([8],[6]) => [6,8]; mergeSortedArrays([3,16], [6,8]) => [3,6,8,16]
   return mergeSortedArrays(leftPart, rightPart); //[1,2,4,50], [3,6,8,16] => [1,2,3,4,6,8,16,50]
 }
+
+function merge(arr1, arr2) {
+  let result = [];
+  //we need 2 vars to loop in each array
+  let i = 0;
+  let j = 0;
+
+  // first loop for case when we have someting in both arrays. We compare each value and
+  while (i < arr1.length && j < arr2.length) {
+    // if value in arr2[j] is bigger than arr1[i] then we nee to push smaller value and icrement i
+    if (arr2[j] > arr1[i]) {
+      result.push(arr1[i]);
+      i++;
+    } else {
+      // if value in arr2[j] is less than arr1[i] then we nee to push smaller value and icrement j
+      result.push(arr2[j]);
+      j++;
+    }
+  }
+  //for cases when arr2 is travered but we have elements in arr1
+  while (i < arr1.length) {
+    result.push(arr1[i]);
+    i++;
+  }
+
+  //for cases when arr1 is travered but we have elements in arr2
+  while (j < arr2.length) {
+    result.push(arr2[j]);
+    j++;
+  }
+  //return sorted and merged single array result
+  return result;
+}
+
+console.log("Merger: ", merge([1, 10, 50], [2, 14, 99, 100]));
 /* ======================================================================================================== */
 const swap = (arr, idx1, idx2) =>
   ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
@@ -86,6 +121,22 @@ function pivotHelper(arr, start = 0, end = arr.length - 1) {
 
   return resultPivotIndex;
 }
+
+// to build prepare sub arrays for megre fn we need to split our arr into arrays of length either 0 or 1
+function mergeSort(arr) {
+  //this function will be called recursevely so we need a base case
+  if (arr.length <= 1) return arr;
+  // we will devide array into two partws based on middle of the initial array.
+  let mid = Math.floor(arr.length / 2);
+  //now we want left var to be a merged array of all left sub arrays, recursive call will first split left part array into arr.length = 1 and then merge function will merge the sub arrays and sort the left part of initial array
+  let left = mergeSort(arr.slice(0, mid));
+  //now we want right var to be a merged array of all right  sub arrays, recursive call will first split right part array into arr.length = 1 and then merge function will merge the sub arrays and sort the right part of initial array
+  let right = mergeSort(arr.slice(mid));
+  // at this point at the last recursove call we wouold have left part sorted and right part sorder so we need to merge then one last time to get end result.
+  return merge(left, right);
+}
+
+console.log("Sorted: ", mergeSort([5, 2, 1, 8, 4, 7, 6, 3]));
 // console.log(pivotHelper([5, 2, 1, 8, 4, 7, 6, 3]));
 /**
  * Sorts an array using the quicksort algorithm.
